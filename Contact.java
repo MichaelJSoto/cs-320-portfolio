@@ -1,0 +1,102 @@
+/**
+ * Michael Soto
+ * Southern New Hampshire University
+ * Professor Jonathan Norman
+ * CS-320 Software Test, Automation QA
+ * April 11, 2026
+ */
+public class Contact {
+
+    private final String contactId;
+    private String firstName;
+    private String lastName;
+    private String phone;
+    private String address;
+
+    public Contact(String contactId, String firstName, String lastName, String phone, String address) {
+        validateContactId(contactId);
+        validateFirstName(firstName);
+        validateLastName(lastName);
+        validatePhone(phone);
+        validateAddress(address);
+
+        this.contactId = contactId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.address = address;
+    }
+
+    // Getters
+    public String getContactId() {
+        return contactId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    // Setters (contactId has no setter — it is not updatable)
+    public void setFirstName(String firstName) {
+        validateFirstName(firstName);
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        validateLastName(lastName);
+        this.lastName = lastName;
+    }
+
+    public void setPhone(String phone) {
+        validatePhone(phone);
+        this.phone = phone;
+    }
+
+    public void setAddress(String address) {
+        validateAddress(address);
+        this.address = address;
+    }
+
+    // Private validation methods (DRY principle)
+    private void validateContactId(String contactId) {
+        if (contactId == null || contactId.length() > 10) {
+            throw new IllegalArgumentException("Invalid contact ID");
+        }
+    }
+
+    private void validateFirstName(String firstName) {
+        if (firstName == null || firstName.length() > 10) {
+            throw new IllegalArgumentException("Invalid first name");
+        }
+    }
+
+    private void validateLastName(String lastName) {
+        if (lastName == null || lastName.length() > 10) {
+            throw new IllegalArgumentException("Invalid last name");
+        }
+    }
+
+    private void validatePhone(String phone) {
+        if (phone == null || phone.length() != 10) {
+            throw new IllegalArgumentException("Invalid phone number");
+        }
+    }
+
+    private void validateAddress(String address) {
+        if (address == null || address.length() > 30) {
+            throw new IllegalArgumentException("Invalid address");
+        }
+    }
+}
